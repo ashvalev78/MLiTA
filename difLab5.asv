@@ -21,12 +21,12 @@ loop = num : 100;
 
 % Создаем векторы для построения графиков
 
-plot1 = zeros(1, length(loop) - 9);
-plot2 = zeros(1, length(loop) - 9);
-plot3 = zeros(1, length(loop) - 9);
-plot4 = zeros(1, length(loop) - 9);
-plot5 = zeros(1, length(loop) - 9);
-plot6 = zeros(1, length(loop) - 9);
+plot1 = zeros(size(loop) - 9);
+plot2 = zeros(size(loop) - 9);
+plot3 = zeros(size(loop) - 9);
+plot4 = zeros(size(loop) - 9);
+plot5 = zeros(size(loop) - 9);
+plot6 = zeros(size(loop) - 9);
 
 %  Высчитываем значения нашей функции и ее производных
 for i = 1 : num
@@ -40,7 +40,7 @@ chosenPoint = points(pointNumber);
 
 % Шумим значения нашей функции
 for i = 1 : num
-    noisedValues(i) = values(i) + rand * 0.001;
+    noisedValues(i) = values(i) + rand - 0.5;
 end
 
 
@@ -98,12 +98,14 @@ plot6(1) = alpha6;
 
 % Начинаем в цикле смотреть на изменение погрешности при увеличении
 % количества точек
-for k = (num + 1):(length(loop) + num - 1)
+for k = (num + 1):(size(loop) + num)
+    
     newPoints = linspace(0,2,k);
 %     Находим наиболее приближенную точку к той, которую мы брали
     [d, index] = min(abs(points - chosenPoint));
     newChosenPoint = newPoints(index);
-        
+    
+    
     %  Высчитываем значения нашей функции и ее производных
     for i = 1 : k
         values(i) = func(newPoints(i));
@@ -113,7 +115,7 @@ for k = (num + 1):(length(loop) + num - 1)
 
     % Шумим значения нашей функции
     for i = 1 : k
-        noisedValues(i) = values(i) + rand * 0.001;
+        noisedValues(i) = values(i) + rand - 0.5;
     end
 
 
