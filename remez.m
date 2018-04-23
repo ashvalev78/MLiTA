@@ -24,18 +24,13 @@ a = input('Enter the left border: ');
 			fvect(i) = f(x(i));
 		end;
 		fvect
-		x = linsolve(A, fvect)
-		xp = linspace(a,b,6);
-%  		Q = zeros(length(x), 1);
-%  		for i = 1:length(x)
-% 			for j = 2:num,
-% 				Q(i) = Q(i) + alph(j) * (x(i).^(j - 2));
-% 			end;
-% 		end;
-        p = zeros(1, num - 1);
-        for i = 1 : (num - 1)
-            p(i) = x(num - i + 1);
-        end
-% 		Q
-        p
-		plot(xp, p)
+		alph = linsolve(A, fvect)
+		x = a:h:b;
+ 		Q = zeros(length(x), 1);
+ 		for i = 1:length(x)
+			for j = 2:num,
+				Q(i) = Q(i) + alph(j) * (x(i).^(j - 2));
+			end;
+		end;
+		Q
+		plot(x, Q)
