@@ -40,7 +40,7 @@ for i = 1 : num,
 
 	y = zeros(1, i + 1);
 	for j = 1 : i + 1,
-		y(j) = func(x(j)) + rand * 0.001;
+		y(j) = func(x(j));
 	end;
 
 	% метод левых прямоугольников
@@ -51,8 +51,8 @@ for i = 1 : num,
 	deltLeft(i) = abs(valueLeft(i) - defaultIntegral);
 	alphLeft(i) = -log(deltLeft(i))/log(i);
 
-	deltLeft(i)
-	alphLeft(i)
+% 	deltLeft(i)
+% 	alphLeft(i)
 	% printf("\n")
 
 	% метод правых прямоугольников
@@ -63,32 +63,32 @@ for i = 1 : num,
 	deltRight(i) = abs(valueRight(i) - defaultIntegral);
 	alphRight(i) = -log(deltRight(i))/log(i);
 
-	deltRight(i)
-	alphRight(i)
+% 	deltRight(i)
+% 	alphRight(i)
 	% printf("\n")
 
 	% метод трапеций
 	for j = 1 : i,
-		valueTrapz(i) =valueTrapz(i) + ((y(j) + y(j + 1))/2) * h;
+		valueTrapz(i) =valueTrapz(i) + ((func(x(j)) + func(x(j + 1)))/2) * h;
 	end;
 % 	valueTrapz(i)
 	deltTrapz(i) = abs(valueTrapz(i) - defaultIntegral);
 	alphTrapz(i) = -log(deltTrapz(i))/log(i);
 
-	deltTrapz(i)
-	alphTrapz(i)
+% 	deltTrapz(i)
+% 	alphTrapz(i)
 	% printf("\n")
 
 	% формула Симпсона
 	for j = 1 : i,
-		valueSimps(i) = valueSimps(i) + (y(j) + y(j + 1) + 4 * (func((x(j) + x(j + 1))/2) + rand * 0.001)) * h/6;
+		valueSimps(i) = valueSimps(i) + (y(j) + y(j + 1) + 4 * (func((x(j) + x(j + 1))/2))) * h/6;
 	end;
 % 	valueSimps(i)
 	deltSimps(i) = abs(valueSimps(i) - defaultIntegral);
 	alphSimps(i) = -log(deltSimps(i))/log(i);
 
-	deltSimps(i)
-	alphSimps(i)
+% 	deltSimps(i)
+% 	alphSimps(i)
 	% printf("\n")
 
 % 	printf('----\n')
